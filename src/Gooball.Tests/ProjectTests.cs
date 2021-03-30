@@ -7,6 +7,7 @@ namespace Gooball.Tests
 
 	public class ProjectTests : GooballTests
 	{
+		private const string PROJECT_NAME = "Project";
 		private const string PROJECT_VERSION = "1.2.3";
 		private const string EDITOR_VERSION = "2020.1.3f1";
 
@@ -28,6 +29,24 @@ namespace Gooball.Tests
 			};
 
 			AssertConsoleEquals(PROJECT_VERSION, action);
+		}
+
+		[Test]
+		public void SetName()
+		{
+			Interpreter.Instance.Run(new string[] { "project", ExampleProjectRoot, "set", "productName", "MyProject" });
+
+			var	project = Project.Read(ExampleProjectRoot);
+			Assert.AreEqual("MyProject", project.ProductName);
+		}
+
+		[Test]
+		public void SetCompany()
+		{
+			Interpreter.Instance.Run(new string[] { "project", ExampleProjectRoot, "set", "company", "MyCompany" });
+
+			var project = Project.Read(ExampleProjectRoot);
+			Assert.AreEqual("MyCompany", project.ProductName);
 		}
 
 		[Test]

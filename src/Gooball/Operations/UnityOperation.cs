@@ -1,5 +1,7 @@
 ﻿using CommandLine;
 using System;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Gooball
 {
@@ -9,6 +11,8 @@ namespace Gooball
 	{
 		[Value(0, Required = true, MetaName = "command", HelpText = "The editor action to perform.")]
 		public string Command { get; set; }
+		[Value(1, Required = false, Default = "./", MetaName = "project-path", HelpText = "The path to the project.")]
+		public string ProjectPath { get; set; }
 
 		// List-Installs options
 		[Option("install-path", HelpText = "The editor installation location.")]
